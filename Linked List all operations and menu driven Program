@@ -1,0 +1,203 @@
+#include<iostream> 
+#include<conio.h> 
+using namespace std; 
+ 
+ 
+struct node 
+{ 
+ int info; 
+ node *link;   
+}; 
+
+// Insert At any postion
+void insertAnywhere(node* &start)
+{
+	cout<<"Enter data where u want to insert ";
+	node *ptr=start, *ptr1=new node;
+	int x,t;
+	cin>>x;
+	cout<<"Enter data of node";
+	cin>>ptr1->info;
+	while(ptr->info!=x)
+	{
+		ptr=ptr->link;
+	}
+	ptr1->link=ptr->link;
+	ptr->link=ptr1;
+}
+
+// Insert At First 
+void insertAtFirst(node* &start)
+{	
+	node* ptr;
+	ptr=new node;
+	int data;
+	cout<<"enetr data ";
+	cin>>data;
+	ptr->info=data;
+	ptr->link=start;
+	start=ptr;
+	cout<<" Done!\n ";
+}
+
+// Delete from any where just by searching the data
+void deleteByData(node* &start)
+{
+	node *ptr=start, *ptr1;
+	int d;
+	if(start!=NULL)
+	{	
+	  cout<<"Enter data ";
+	  cin>>d;
+	 if(ptr->info==d)
+    	{
+		start=ptr->link;
+		delete ptr;
+		cout<<"Done !\n";
+		return;
+		}
+	while((ptr->info!=d) && (ptr->link!=NULL))
+	  {
+		ptr1=ptr;
+		ptr=ptr->link;
+	   }
+	if(ptr->info==d)
+	 {
+		ptr1->link=ptr->link;
+		delete ptr;
+		cout<<"Done!\n";
+		return;
+      }
+	cout<<"Data not found! \n";
+	}
+	else cout<<"List is Empty!\n";
+	
+}
+//Deletion at first
+void delAtFirst(node* &start)
+{
+	node *ptr=start;
+	start=start->link;
+	delete ptr;
+	cout<<" Done!\n ";
+}
+
+
+//Deletion at last
+void del(node *start)
+{
+	node *ptr=start;
+	while(ptr->link->link!=NULL)
+	{
+		ptr=ptr->link;
+	}
+	delete ptr->link->link;
+	ptr->link=NULL;
+	cout<<" Deletion done!\n";
+}
+
+
+ //insertion of node at end
+void insert(node *&start)
+ {
+ node *ptr=start;
+  while(ptr->link!=NULL)
+  {
+  	ptr=ptr->link;  	
+  }
+  cout<<"Enetrr data ";
+  int x;
+  cin>>x;
+  ptr->link=new node;
+  ptr=ptr->link;
+  ptr->link=NULL;
+  ptr->info=x;
+  
+ cout<<"Insertion Done!\n";
+ 	
+ }
+ 
+ 
+// create() functoin to create a linked list and add 3 data into the list 
+node *create() 
+{ 
+int i=0;
+ node *ptr,*start = NULL; 
+ char ch ='y'; 
+
+ while(i++<3)
+ { 
+  if(start==NULL) 
+  { 
+   start = new node; 
+   ptr = start; 
+    
+  } 
+  else 
+  { 
+   ptr->link = new node; 
+   ptr = ptr->link; 
+  } 
+   int data; 
+   cout<<"Enter data of new node "; 
+   cin>>data; 
+   ptr->info = data; 
+ } 
+  ptr->link=NULL; 
+   cout<<" Done !!! \n";
+  return(start); 
+   
+} 
+
+
+
+void traverse(node *start) 
+{ 
+ node *ptr = start; 
+ int i=0; 
+ cout<<"Node are "; 
+ while(ptr!=NULL) 
+ { 
+  i++; 
+  cout<<ptr->info<<" "; 
+  ptr= ptr->link; 
+ } 
+ cout<<endl;
+}
+
+
+
+
+
+
+int main() 
+{ 
+ int chh; 
+   node *start =NULL; 
+  
+ while(1) 
+ { 
+   
+  cout<<"\npls enter yr choice\n 1. Insrtion \n 2. insert in front  \n 3. insert in last \n 4. Insert anywhare\n 5. traversing \n 6. delAtFirst \n 7. Delete at last \n 8. Del by number \n 9. exit \n"; 
+  cin>>chh; 
+  switch(chh) 
+  { 
+  case 1: start = create();      					   break; 
+  case 2: insertAtFirst(start); 					   break;         
+  case 3: insert(start);   							   break; 
+  case 4: insertAnywhere(start); 					   break; 
+  case 5: traverse(start);    						   break;   
+  case 6: delAtFirst(start); 						   break;
+  case 7: del(start);								   break;
+  case 8: deleteByData(start);  					   break; 
+  case 9: exit(0);       
+  
+ 
+} 
+ system("pause");
+ system("CLS");
+ cout<<"\t		";traverse(start);    
+} 
+return 0; 
+} 
+ 
