@@ -1,0 +1,47 @@
+in: The mango is sweet
+out: ehT ognam si teews
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string reverse(string &s, int i, int j)
+    {
+        
+        while(i<j)
+        {
+            swap(s[i++], s[j--]);
+        }
+        
+        return s;
+    }
+
+
+    string reverseWords(string s) {
+        string ans="";
+       string temp="";
+    int j=0;
+    s=s+" ";
+       for(int i=0; i<s.length(); i++)
+       {
+            temp="";
+           if(s[i]==' ')
+           {
+             
+              reverse(s,j, i-1);
+            
+             j=i+1;
+           
+           }
+
+       }
+       s.pop_back();
+      cout<<s;
+        return ans;
+    }
+
+int main() {
+   
+   reverseWords("The mango is sweet");
+    return 0;
+}
